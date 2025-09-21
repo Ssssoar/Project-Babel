@@ -1,27 +1,56 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuController : MonoBehaviour{
+    public static MenuController Instance { get; private set;}
+
     [Header("Submenus")]
     [SerializeField] GameObject settingsCanvas;
     [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject secretCanvas;
+
     [Header("Buttons")]
     [SerializeField] Button startButton;
     [SerializeField] Button settingsButton;
     [SerializeField] Button quitButton;
     [SerializeField] Button[] backToMenuButtons;
     [SerializeField] Button[] secretMenuButtons;
+    [SerializeField] Button horizontalSizeDecreaseButton;
+    [SerializeField] Button horizontalSizeIncreaseButton;
+    [SerializeField] Button verticalSizeDecreaseButton;
+    [SerializeField] Button verticalSizeIncreaseButton;
+
+    [Header("Text Displays")]
+    [SerializeField] TMP_Text horizontalSizeDisplay;
+    [SerializeField] TMP_Text verticalSizeDisplay;
+
     [Header("Parameters")]
     [SerializeField] float secretMenuTimeLimit;
+    [SerializeField] Vector2Int playFieldMaxSize;
+    [SerializeField] Vector2Int playFieldMinSize;
+
     //----ENUMS-----
     enum Menu{Main,Setting,Secret};
+
     [Header("Variables")]
     private Menu currentMenu = Menu.Main;
     private int correctSecretCombinationPresses = 0;
     private float secretCombinationTimeLeft = 0f;
+    public Vector2Int fieldSize = new Vector2Int(10,10);
+
+    void Awake(){
+        if (Instance != null && Instance != this){
+            Destroy(this);
+        }else{
+            Instance = this;
+        }
+    }
+
     void Start(){
         SubscribeButtons();
+        UpdateSizeDisplay();
+        EnableMenuCanvases();
     }
 
     void Update(){
@@ -72,6 +101,7 @@ public class MenuController : MonoBehaviour{
                 OpenSecretMenu();
             }
         }else{
+        OpenMainMenu();
             ResetSecretCombination();
         }
     }
@@ -79,6 +109,32 @@ public class MenuController : MonoBehaviour{
     void ResetSecretCombination(){
         correctSecretCombinationPresses = 0;
         secretCombinationTimeLeft = 0f;
+    }
+
+    void ModifyPlaySize(bool vertical, bool increase){
+        if (vertical){
+            fieldSize.y = (increase? fieldSize.y +1 : fieldSize.y -1);
+            fieldSize.y = ClampValue(playFieldMinSize.y, fieldSize.y, playFieldMaxSize.y);
+        }else{
+            fieldSize.x = (increase? fieldSize.x +1 : fieldSize.x -1);
+            fieldSize.x = ClampValue(playFieldMinSize.x, fieldSize.x, playFieldMaxSize.x);
+        }
+        UpdateSizeDisplay();
+    }
+
+    int ClampValue(int min, int value, int max){
+        if (value <= min){
+            return min;
+        }else if(value >= max){
+            return max;
+        }else{
+            return value;
+        }
+    }
+
+    void UpdateSizeDisplay(){
+        horizontalSizeDisplay.text = fieldSize.x.ToString();
+        verticalSizeDisplay.text = fieldSize.y.ToString();
     }
 
     void SubscribeButtons(){
@@ -101,5 +157,42 @@ public class MenuController : MonoBehaviour{
                 }
             );
         }
+        if (horizontalSizeDecreaseButton != null){
+            horizontalSizeDecreaseButton.onClick.AddListener(
+                delegate{
+                    bool vertical = false;
+                    bool increase = false;
+                    ModifyPlaySize(vertical, increase);
+                }
+            );
+        }
+        if (horizontalSizeIncreaseButton != null){
+            horizontalSizeIncreaseButton.onClick.AddListener(
+                delegate{
+                    bool vertical = false;
+                    bool increase = true;
+                    ModifyPlaySize(vertical, increase);
+                }
+            );
+        }
+        if (verticalSizeDecreaseButton != null){
+            verticalSizeDecreaseButton.onClick.AddListener(
+                delegate{
+                    bool vertical = true;
+                    bool increase = false;
+                    ModifyPlaySize(vertical, increase);
+                }
+            );
+        }
+        if (verticalSizeIncreaseButton != null){
+            verticalSizeIncreaseButton.onClick.AddListener(
+                delegate{
+                    bool vertical = true;
+                    bool increase = true;
+                    ModifyPlaySize(vertical, increase);
+                }
+            );
+        }
     }
+
 }
