@@ -4095,8 +4095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3fc5d355893140db30052dbec2fd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playFieldMaxSize: {x: 5, y: 5}
-  playFieldMinSize: {x: 20, y: 20}
+  playFieldMaxSize: {x: 20, y: 20}
+  playFieldMinSize: {x: 5, y: 5}
   fieldSize: {x: 10, y: 10}
 --- !u!1 &2085378484
 GameObject:

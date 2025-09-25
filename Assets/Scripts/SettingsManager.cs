@@ -22,8 +22,10 @@ public class SettingsManager : MonoBehaviour{
             (newSize.y < playFieldMinSize.y) ||
             (newSize.y > playFieldMaxSize.y) 
         ){
+            Debug.Log("[SETTINGS] PlayfieldSize change refused");
             return false;
         }else{
+            Debug.Log("[SETTINGS] PlayfieldSize changed to " + newSize);
             fieldSize = newSize;
             return true;
         }

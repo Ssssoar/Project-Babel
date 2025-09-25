@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour{
                 Vector2Int tilePosition = new Vector2Int(column,row);
                 tileField[column,row] = newTile;
                 if( IsBorderPosition( tilePosition , fieldSize ) ){
-                    newTile.MarkAsBorder();
+                    newTile.ChangeToBorder();
                 }
                 if( IsValidInputOutputCandidate( tilePosition, fieldSize)){
                     inputOutputCandidates[ nextCandidateTileIndexToAdd ] = newTile;

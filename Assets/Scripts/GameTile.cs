@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class GameTile : MonoBehaviour{
     [Header("References")]
     [SerializeField] Button buttonComponent;
+    [SerializeField] Image[] emptyTileSpriteDisplayers;
+    [SerializeField] Image[] filledTileSpritesDisplayers;
 
     [Header("Parameters")]
     [SerializeField] TileTypeData[] possibleTiles;
@@ -13,20 +15,15 @@ public class GameTile : MonoBehaviour{
     Vector2Int tilePosition;
 
     //----ENUMS-----
-    enum TileType{Border,Vertical,Horizontal,Cross,Northwest,Northeast,Southwest,Southeast,Empty};
+    public enum TileType{Border,Vertical,Horizontal,Cross,Northwest,Northeast,Southwest,Southeast,Empty};
 
     //----STRUCTS----
     [System.Serializable] //if I were doing this forreal I would do this a scriptable object
     struct TileTypeData{
-        [SerializeField] TileType type;
-        [SerializeField] Sprite emptySprite;
-        [SerializeField] Sprite filledSprite;
-        [SerializeField] AnimationClip[] fillAnimations; //in the order top right bottom left, with the next eight for the second fills
-    }
-
-    public void MarkAsBorder(){
-        currentTileType = TileType.Border;
-        buttonComponent.interactable = false;
+        public TileType type {get; private set;}
+        public Sprite emptySprite {get; private set;}
+        public Sprite filledSprite {get; private set;}
+        public AnimationClip[] fillAnimations {get; private set;} //in the order top right bottom left, with the next eight for the second fills
     }
 
     public void AssignPosition(int column, int row){
@@ -43,17 +40,54 @@ public class GameTile : MonoBehaviour{
     }
 
     public void ChangeToVertical(){
-        UndoBorder();
-        currentTileType = TileType.Vertical;
+        ChangeToTileType(TileType.Vertical);
     }
 
     public void ChangeToHorizontal(){
-        UndoBorder();
-        currentTileType = TileType.Horizontal;
+        ChangeToTileType(TileType.Horizontal);
+    }
+
+    public void ChangeToEmpty(){
+        ChangeToTileType(TileType.Empty);
+    }
+
+    public void ChangeToBorder(){
+        ChangeToTileType(TileType.Border);
+    }
+
+    public void ChangeToMatchTile(GameTile tileToMatch){
+        ChangeToTileType( tileToMatch.GetTileType() );
+    }
+
+    public void ChangeToTileType(TileType typeToChangeTo){
+        if (typeToChangeTo != TileType.Border){
+            UndoBorder();
+        }else{
+            buttonComponent.interactable = false;
+        }
+        ChangeSprites(typeToChangeTo);
+        currentTileType = typeToChangeTo;
     }
 
     void UndoBorder(){
         if (currentTileType != TileType.Border) return;
         buttonComponent.interactable = true;
+    }
+
+    void ChangeSprites(TileType typeToChangeTo){
+        foreach(TileTypeData possibleTile in possibleTiles){
+            if(possibleTile.type == typeToChangeTo){
+                foreach(Image emptyTileSpriteDisplayer in emptyTileSpriteDisplayers){
+                    emptyTileSpriteDisplayer.sprite = possibleTile.emptySprite;
+                }
+                foreach(Image filledTileSpritesDisplayer in filledTileSpritesDisplayers){
+                    filledTileSpritesDisplayer. sprite = possibleTile.filledSprite;
+                }
+            }
+        }
+    }
+
+    public TileType GetTileType(){
+        return currentTileType;
     }
 }

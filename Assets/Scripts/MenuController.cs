@@ -106,7 +106,8 @@ public class MenuController : MonoBehaviour{
         }else{
             newFieldSize.x = (increase? newFieldSize.x +1 : newFieldSize.x -1);
         }
-        if (SettingsManager.Instance.TryChangePlayFieldSize(newFieldSize)){
+        var changeAttemptSuccessful = SettingsManager.Instance.TryChangePlayFieldSize(newFieldSize);
+        if (changeAttemptSuccessful){
             UpdateSizeDisplay();
         }
     }
