@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public class MenuController : MonoBehaviour{
-    public static MenuController Instance { get; private set;}
 
     [Header("Submenus")]
     [SerializeField] GameObject settingsCanvas;
@@ -27,8 +26,6 @@ public class MenuController : MonoBehaviour{
 
     [Header("Parameters")]
     [SerializeField] float secretMenuTimeLimit;
-    [SerializeField] Vector2Int playFieldMaxSize;
-    [SerializeField] Vector2Int playFieldMinSize;
 
     //----ENUMS-----
     enum Menu{Main,Setting,Secret};
@@ -37,15 +34,6 @@ public class MenuController : MonoBehaviour{
     private Menu currentMenu = Menu.Main;
     private int correctSecretCombinationPresses = 0;
     private float secretCombinationTimeLeft = 0f;
-    public Vector2Int fieldSize = new Vector2Int(10,10);
-
-    void Awake(){
-        if (Instance != null && Instance != this){
-            Destroy(this);
-        }else{
-            Instance = this;
-        }
-    }
 
     void Start(){
         SubscribeButtons();
@@ -112,14 +100,15 @@ public class MenuController : MonoBehaviour{
     }
 
     void ModifyPlaySize(bool vertical, bool increase){
+        Vector2Int newFieldSize = SettingsManager.Instance.GetPlayFieldSize();
         if (vertical){
-            fieldSize.y = (increase? fieldSize.y +1 : fieldSize.y -1);
-            fieldSize.y = ClampValue(playFieldMinSize.y, fieldSize.y, playFieldMaxSize.y);
+            newFieldSize.y = (increase? newFieldSize.y +1 : newFieldSize.y -1);
         }else{
-            fieldSize.x = (increase? fieldSize.x +1 : fieldSize.x -1);
-            fieldSize.x = ClampValue(playFieldMinSize.x, fieldSize.x, playFieldMaxSize.x);
+            newFieldSize.x = (increase? newFieldSize.x +1 : newFieldSize.x -1);
         }
-        UpdateSizeDisplay();
+        if (SettingsManager.Instance.TryChangePlayFieldSize(newFieldSize)){
+            UpdateSizeDisplay();
+        }
     }
 
     int ClampValue(int min, int value, int max){
@@ -133,6 +122,7 @@ public class MenuController : MonoBehaviour{
     }
 
     void UpdateSizeDisplay(){
+        Vector2Int fieldSize = SettingsManager.Instance.GetPlayFieldSize();
         horizontalSizeDisplay.text = fieldSize.x.ToString();
         verticalSizeDisplay.text = fieldSize.y.ToString();
     }

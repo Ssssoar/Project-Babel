@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593aee2d9c50a9251a57ef9f0538c2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyTile: {fileID: 1754976431748038794, guid: 261a114861d5574ed9515aa0324a8ca0, type: 3}
+  emptyTile: {fileID: 8456677143214194980, guid: 261a114861d5574ed9515aa0324a8ca0, type: 3}
   buttonContainer: {fileID: 1736647644}
 --- !u!1 &2063131474
 GameObject:
