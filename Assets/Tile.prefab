@@ -292,30 +292,79 @@ MonoBehaviour:
   - type: 0
     emptySprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
     filledSprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
   - type: 1
     emptySprite: {fileID: -7756645678014892129, guid: 9a3cc40ead78a3c2ea92e9151b9da887, type: 3}
     filledSprite: {fileID: 6001361300907998725, guid: 17fc10acdd128009f94447b7d386326c, type: 3}
-  - type: 2
-    emptySprite: {fileID: -8234860160247154968, guid: 3de2a8d25e70803de85350b588cb60d8, type: 3}
-    filledSprite: {fileID: -2355332368770224884, guid: 49af29e92ee293296bd7c829c148724f, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: 488aca53a960a5bdcacfecf26006efaa, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 280bcc9278e40c011a21d5e858dacae1, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
   - type: 3
     emptySprite: {fileID: -9163426285224168042, guid: 25147c62c70aabf679336e263136a8cd, type: 3}
     filledSprite: {fileID: -791826342705716870, guid: 28c0d5ef4c041a607acc4d6ad1ecdb88, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: c941e59d96ecd033fa0c9d25bdb80a34, type: 2}
+    - {fileID: 7400000, guid: 8e05259521b1ddcba91d4e25b90fa56a, type: 2}
+    - {fileID: 7400000, guid: 523eb6874e0493e28a49c4114e05cfdf, type: 2}
+    - {fileID: 7400000, guid: 4acb459de80d3eba89db6a074d2c9548, type: 2}
+    - {fileID: 7400000, guid: 1302c7b72b4beb254b6ec06ae7825452, type: 2}
+    - {fileID: 7400000, guid: 62a582e574abef1e5a491e71910292e6, type: 2}
+    - {fileID: 7400000, guid: 97be19b2a1452bbd281a53e756a46ff0, type: 2}
+    - {fileID: 7400000, guid: 6a5b436cb4f6cdb86892c2aa925fd712, type: 2}
   - type: 4
     emptySprite: {fileID: 2643676557452317441, guid: 2fd416f3456d8b8b3a6fcc99459ba3a9, type: 3}
     filledSprite: {fileID: -966550903422937424, guid: d47e681f7b1e22268b70ff0139b15a8a, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: 6acc9dae451862897a9f2e8b9dea8905, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: a8a00860a7945334080059b890cf6ced, type: 2}
   - type: 5
     emptySprite: {fileID: -2920486070269916549, guid: fcd4d9208828a43d28275ca07e19a77d, type: 3}
     filledSprite: {fileID: -3154701598194876039, guid: 656886df729ed76a3975be756de342f9, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: c5f1b80a92e2a7859b42e04a33353d7a, type: 2}
+    - {fileID: 7400000, guid: 00c6351bdac09d6c0b51be8e58a10eb2, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
   - type: 6
     emptySprite: {fileID: 6445394717626472174, guid: 2082524c8922eadb18a7b062b2f94cd0, type: 3}
     filledSprite: {fileID: -5832495694501504655, guid: 06886f4e844e175d3a8f45c45c1e4ea9, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: fbec9d97220abd83fb3e8c9d82af0a74, type: 2}
+    - {fileID: 7400000, guid: 5c3b8e104d093ea67b5c509a04144977, type: 2}
   - type: 7
     emptySprite: {fileID: 6445394717626472174, guid: 2082524c8922eadb18a7b062b2f94cd0, type: 3}
     filledSprite: {fileID: -5832495694501504655, guid: 06886f4e844e175d3a8f45c45c1e4ea9, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 779de800d412969029bc17ce7d724cd5, type: 2}
+    - {fileID: 7400000, guid: bba56634309be9304aaf9a53540f684e, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
   - type: 8
     emptySprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
     filledSprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+  - type: 8
+    emptySprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
+    filledSprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 78592dcf258c2ec958f468eea9568e75, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 5cfa4361ce5e76903a3fdf36dbc69b15, type: 2}
 --- !u!95 &569095481674853827
 Animator:
   serializedVersion: 7
