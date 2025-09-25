@@ -6,7 +6,7 @@ public class GameTile : MonoBehaviour{
     [SerializeField] Button buttonComponent;
 
     [Header("Parameters")]
-    [SerializeField] TileImages[] possibleTiles;
+    [SerializeField] TileTypeData[] possibleTiles;
 
     [Header("Variables")]
     TileType currentTileType = TileType.Empty;
@@ -17,10 +17,11 @@ public class GameTile : MonoBehaviour{
 
     //----STRUCTS----
     [System.Serializable] //if I were doing this forreal I would do this a scriptable object
-    struct TileImages{
+    struct TileTypeData{
         [SerializeField] TileType type;
         [SerializeField] Sprite emptySprite;
         [SerializeField] Sprite filledSprite;
+        [SerializeField] AnimationClip[] fillAnimations; //in the order top right bottom left, with the next eight for the second fills
     }
 
     public void MarkAsBorder(){
