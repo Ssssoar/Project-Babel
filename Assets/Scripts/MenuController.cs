@@ -19,10 +19,28 @@ public class MenuController : MonoBehaviour{
     [SerializeField] Button horizontalSizeIncreaseButton;
     [SerializeField] Button verticalSizeDecreaseButton;
     [SerializeField] Button verticalSizeIncreaseButton;
+    [SerializeField] Button initialFillTimeDecreaseButton;
+    [SerializeField] Button initialFillTimeIncreaseButton;
+    [SerializeField] Button singeFillTimeDecreaseButton;
+    [SerializeField] Button singeFillTimeIncreaseButton;
+    [SerializeField] Button betweenTimeDecreaseButton;
+    [SerializeField] Button betweenTimeIncreaseButton;
+    [SerializeField] Button fillBonusDecreaseButton;
+    [SerializeField] Button fillBonusIncreaseButton;
+    [SerializeField] Button replacePenaltyDecreaseButton;
+    [SerializeField] Button replacePenaltyIncreaseButton;
+    [SerializeField] Button boardCompleteBonusDecreaseButton;
+    [SerializeField] Button boardCompleteBonusIncreaseButton;
 
     [Header("Text Displays")]
     [SerializeField] TMP_Text horizontalSizeDisplay;
     [SerializeField] TMP_Text verticalSizeDisplay;
+    [SerializeField] TMP_Text initialFillTimeDisplay;    
+    [SerializeField] TMP_Text singleFillTimeDisplay;
+    [SerializeField] TMP_Text betweenTimeDisplay;
+    [SerializeField] TMP_Text fillBonusDisplay;
+    [SerializeField] TMP_Text replacePenaltyDisplay;
+    [SerializeField] TMP_Text boardCompleteBonusDisplay;    
 
     [Header("Parameters")]
     [SerializeField] float secretMenuTimeLimit;
@@ -87,9 +105,10 @@ public class MenuController : MonoBehaviour{
             if (correctSecretCombinationPresses == secretMenuButtons.Length){
                 ResetSecretCombination();
                 OpenSecretMenu();
+                UpdateSecretMenu();
             }
         }else{
-        OpenMainMenu();
+            OpenMainMenu();
             ResetSecretCombination();
         }
     }
@@ -112,20 +131,19 @@ public class MenuController : MonoBehaviour{
         }
     }
 
-    int ClampValue(int min, int value, int max){
-        if (value <= min){
-            return min;
-        }else if(value >= max){
-            return max;
-        }else{
-            return value;
-        }
-    }
-
     void UpdateSizeDisplay(){
         Vector2Int fieldSize = SettingsManager.Instance.GetPlayFieldSize();
         horizontalSizeDisplay.text = fieldSize.x.ToString();
         verticalSizeDisplay.text = fieldSize.y.ToString();
+    }
+
+    void UpdateSecretMenu(){
+        initialFillTimeDisplay.text = SettingsManager.Instance.timeBeforeFirstFill.ToString();
+        singleFillTimeDisplay.text = SettingsManager.Instance.timeToFillTile.ToString();
+        betweenTimeDisplay.text = SettingsManager.Instance.timeBetweenTileFills.ToString();
+        fillBonusDisplay.text = SettingsManager.Instance.scoreBonusForFilledTile.ToString();
+        replacePenaltyDisplay.text = SettingsManager.Instance.scorePenaltyForReplacedTile.ToString();
+        boardCompleteBonusDisplay.text = SettingsManager.Instance.scoreBonusForSuccess.ToString();
     }
 
     void SubscribeButtons(){
@@ -184,6 +202,101 @@ public class MenuController : MonoBehaviour{
                 }
             );
         }
+        if (initialFillTimeDecreaseButton != null){
+            initialFillTimeDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryInitialFillTimeChange(-.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (initialFillTimeIncreaseButton != null){
+            initialFillTimeIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryInitialFillTimeChange(.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (singeFillTimeDecreaseButton != null){
+            singeFillTimeDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TrySingleFillTimeChange(-.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (singeFillTimeIncreaseButton != null){
+            singeFillTimeIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TrySingleFillTimeChange(.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (betweenTimeDecreaseButton != null){
+            betweenTimeDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryBetweenTimeChange(-.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (betweenTimeIncreaseButton != null){
+            betweenTimeIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryBetweenTimeChange(.5f);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (fillBonusDecreaseButton != null){
+            fillBonusDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryFillBonusChange(-100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (fillBonusIncreaseButton != null){
+            fillBonusIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryFillBonusChange(100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (replacePenaltyDecreaseButton != null){
+            replacePenaltyDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryReplacePenaltyChange(-100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (replacePenaltyIncreaseButton != null){
+            replacePenaltyIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryReplacePenaltyChange(100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (boardCompleteBonusDecreaseButton != null){
+            boardCompleteBonusDecreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryCompleteBoardBonusChange(-100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
+        if (boardCompleteBonusIncreaseButton != null){
+            boardCompleteBonusIncreaseButton.onClick.AddListener(
+                delegate{
+                    SettingsManager.Instance.TryCompleteBoardBonusChange(100);
+                    UpdateSecretMenu();
+                }
+            );
+        }
     }
-
 }

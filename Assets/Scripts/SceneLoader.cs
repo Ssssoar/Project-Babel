@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour{
             Destroy(this);
         }else{
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
     [SerializeField] string gameSceneName;
