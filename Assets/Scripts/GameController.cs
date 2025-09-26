@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour
     [SerializeField] TMP_Text endScoreDisplay;
     [SerializeField] TMP_Text hiScoreDisplay;
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject victoryText;
+    [SerializeField] GameObject defeatText;
+    [SerializeField] Button[] backToMenuButtons;
 
     [Header("Variables")]
     int nextCandidateTileIndexToAdd = 0;
@@ -25,6 +28,7 @@ public class GameController : MonoBehaviour
     TimerMode currentTimerMode;
     GameTile nextTileToFlow;
     int score;
+    bool victory = false;
 
     //---ENUMS
     public enum TimerMode { InitialWait, Flowing, BetweenWait, Halt };
@@ -46,6 +50,17 @@ public class GameController : MonoBehaviour
         TimerSetup();
         gameOverPanel.SetActive(false);
         UpdateScoreDisplay();
+        SubscribeButtons();
+    }
+
+    void SubscribeButtons(){
+        foreach(Button backButton in backToMenuButtons){
+            backButton.onClick.AddListener(BackToMenu);
+        }
+    }
+
+    void BackToMenu(){
+        SceneLoader.Instance.LoadMenu();
     }
 
     void FixedUpdate(){
@@ -154,6 +169,10 @@ public class GameController : MonoBehaviour
     }
 
     void PlaceTile(GameTile targetTile){
+        if (targetTile.GetTileType() != GameTile.TileType.Empty){
+            score += SettingsManager.Instance.scorePenaltyForReplacedTile;
+            UpdateScoreDisplay();
+        }
         targetTile.ChangeToMatchTile(GetTileToBePlaced());
         AdvanceQueue();
     }
@@ -223,6 +242,12 @@ public class GameController : MonoBehaviour
                     nextTileToFlow.StartFlow();
                     score += SettingsManager.Instance.scoreBonusForFilledTile;
                     UpdateScoreDisplay();
+                    if (nextTileToFlow == outputTile){
+                        victory = true;
+                        score += SettingsManager.Instance.scoreBonusForSuccess;
+                        UpdateScoreDisplay();
+                        GameOver();
+                    }
                 }
             }
         }
@@ -235,6 +260,8 @@ public class GameController : MonoBehaviour
     }
 
     void SetUpGameOverPanel(){
+        victoryText.SetActive(victory);
+        defeatText.SetActive(!victory);
         endScoreDisplay.text = score.ToString();
         int hiScore = SettingsManager.Instance.UpdateHighScore(score);
         hiScoreDisplay.text = hiScore.ToString();

@@ -181,7 +181,7 @@ public class GameTile : MonoBehaviour{
             (currentTileType == TileType.Vertical) && (receivingFlowFrom == Direction.Up) ||
             (currentTileType == TileType.Cross) && (receivingFlowFrom == Direction.Up) ||
             (currentTileType == TileType.Southeast) && (receivingFlowFrom == Direction.Right) ||
-            (currentTileType == TileType.Southeast) && (receivingFlowFrom == Direction.Left)
+            (currentTileType == TileType.Southwest) && (receivingFlowFrom == Direction.Left)
         ){
             return new Vector2Int(tilePosition.x , tilePosition.y +1); //one down
         }
