@@ -4098,6 +4098,9 @@ MonoBehaviour:
   playFieldMaxSize: {x: 20, y: 20}
   playFieldMinSize: {x: 5, y: 5}
   fieldSize: {x: 10, y: 10}
+  timeToFillTile: 5
+  timeBeforeFirstFill: 20
+  timeBetweenTileFills: 1
 --- !u!1 &2085378484
 GameObject:
   m_ObjectHideFlags: 0

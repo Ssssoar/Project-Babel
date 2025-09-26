@@ -6,6 +6,9 @@ public class SettingsManager : MonoBehaviour{
     [SerializeField] Vector2Int playFieldMaxSize;
     [SerializeField] Vector2Int playFieldMinSize;
     public Vector2Int fieldSize = new Vector2Int(10,10);
+    public float timeToFillTile;
+    public float timeBeforeFirstFill;
+    public float timeBetweenTileFills;
 
     void Awake(){
         if (Instance != null && Instance != this){

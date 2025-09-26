@@ -288,6 +288,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonComponent: {fileID: 9006092230574824224}
+  emptyTileSpriteDisplayers:
+  - {fileID: 6675017235243489367}
+  filledTileSpritesDisplayers:
+  - {fileID: 2700217996207941087}
+  - {fileID: 127701249627661595}
+  - {fileID: 1862565102888377565}
+  animator: {fileID: 569095481674853827}
   possibleTiles:
   - type: 0
     emptySprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
@@ -305,6 +312,14 @@ MonoBehaviour:
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
     - {fileID: 7400000, guid: 280bcc9278e40c011a21d5e858dacae1, type: 2}
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+  - type: 2
+    emptySprite: {fileID: -8234860160247154968, guid: 3de2a8d25e70803de85350b588cb60d8, type: 3}
+    filledSprite: {fileID: -2355332368770224884, guid: 49af29e92ee293296bd7c829c148724f, type: 3}
+    fillAnimations:
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 78592dcf258c2ec958f468eea9568e75, type: 2}
+    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
+    - {fileID: 7400000, guid: 5cfa4361ce5e76903a3fdf36dbc69b15, type: 2}
   - type: 3
     emptySprite: {fileID: -9163426285224168042, guid: 25147c62c70aabf679336e263136a8cd, type: 3}
     filledSprite: {fileID: -791826342705716870, guid: 28c0d5ef4c041a607acc4d6ad1ecdb88, type: 3}
@@ -342,8 +357,8 @@ MonoBehaviour:
     - {fileID: 7400000, guid: fbec9d97220abd83fb3e8c9d82af0a74, type: 2}
     - {fileID: 7400000, guid: 5c3b8e104d093ea67b5c509a04144977, type: 2}
   - type: 7
-    emptySprite: {fileID: 6445394717626472174, guid: 2082524c8922eadb18a7b062b2f94cd0, type: 3}
-    filledSprite: {fileID: -5832495694501504655, guid: 06886f4e844e175d3a8f45c45c1e4ea9, type: 3}
+    emptySprite: {fileID: 3426129362118446751, guid: c39710faef01571dd9996ff2ea579406, type: 3}
+    filledSprite: {fileID: -7282236213611986530, guid: 54d3fde6076458b1fb24da3fa56a4537, type: 3}
     fillAnimations:
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
     - {fileID: 7400000, guid: 779de800d412969029bc17ce7d724cd5, type: 2}
@@ -357,14 +372,6 @@ MonoBehaviour:
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
     - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
-  - type: 8
-    emptySprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
-    filledSprite: {fileID: -6695950386315148514, guid: 7b9412a12ce26e640a1e9ba1f470aabb, type: 3}
-    fillAnimations:
-    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
-    - {fileID: 7400000, guid: 78592dcf258c2ec958f468eea9568e75, type: 2}
-    - {fileID: 7400000, guid: e333ebab7c83a0258a74aec7fcb4b1b6, type: 2}
-    - {fileID: 7400000, guid: 5cfa4361ce5e76903a3fdf36dbc69b15, type: 2}
 --- !u!95 &569095481674853827
 Animator:
   serializedVersion: 7
