@@ -21,6 +21,11 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject victoryText;
     [SerializeField] GameObject defeatText;
     [SerializeField] Button[] backToMenuButtons;
+    [SerializeField] TMP_Text pauseScoreDisplay;
+    [SerializeField] TMP_Text pauseHiScoreDisplay;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] Button pauseButton;
+    [SerializeField] Button unPauseButton;
 
     [Header("Variables")]
     int nextCandidateTileIndexToAdd = 0;
@@ -29,6 +34,8 @@ public class GameController : MonoBehaviour
     GameTile nextTileToFlow;
     int score;
     bool victory = false;
+    bool paused = false;
+    TimerMode storedTimerMode;
 
     //---ENUMS
     public enum TimerMode { InitialWait, Flowing, BetweenWait, Halt };
@@ -49,6 +56,7 @@ public class GameController : MonoBehaviour
         CreateInputAndOutputTile();
         TimerSetup();
         gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
         UpdateScoreDisplay();
         SubscribeButtons();
     }
@@ -56,6 +64,12 @@ public class GameController : MonoBehaviour
     void SubscribeButtons(){
         foreach(Button backButton in backToMenuButtons){
             backButton.onClick.AddListener(BackToMenu);
+        }
+        if(pauseButton != null){
+            pauseButton.onClick.AddListener(Pause);
+        }
+        if(unPauseButton != null){
+            unPauseButton.onClick.AddListener(UnPause);
         }
     }
 
@@ -169,8 +183,9 @@ public class GameController : MonoBehaviour
     }
 
     void PlaceTile(GameTile targetTile){
+        if (paused) return;
         if (targetTile.GetTileType() != GameTile.TileType.Empty){
-            score += SettingsManager.Instance.scorePenaltyForReplacedTile;
+            score -= SettingsManager.Instance.scorePenaltyForReplacedTile;
             UpdateScoreDisplay();
         }
         targetTile.ChangeToMatchTile(GetTileToBePlaced());
@@ -182,6 +197,7 @@ public class GameController : MonoBehaviour
     }
 
     void AdvanceQueue(){
+        if (paused) return;
         for (int i = queueTiles.Length - 1; i > 0; i--)
         {
             queueTiles[i].ChangeToMatchTile(queueTiles[i - 1]);
@@ -265,5 +281,26 @@ public class GameController : MonoBehaviour
         endScoreDisplay.text = score.ToString();
         int hiScore = SettingsManager.Instance.UpdateHighScore(score);
         hiScoreDisplay.text = hiScore.ToString();
+    }
+
+    void Pause(){
+        pauseScoreDisplay.text = score.ToString();
+        pauseHiScoreDisplay.text = SettingsManager.Instance.hiScore.ToString();
+        storedTimerMode = currentTimerMode;
+        currentTimerMode = TimerMode.Halt;
+        paused = true;
+        Time.timeScale = 0.0f;
+        pausePanel.SetActive(true);
+    }
+
+    void UnPause(){
+        Time.timeScale = 1.0f;
+        pausePanel.SetActive(false);
+        currentTimerMode = storedTimerMode;
+        paused = false;
+    }
+
+    public bool IsPaused(){
+        return paused;
     }
 }
